@@ -20,6 +20,7 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.String(20))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     last_login = db.Column(db.DateTime)
+    avatar = db.Column(db.String(255), nullable=True)  # хранит путь к файлу аватара
     
     reader = db.relationship('Reader', backref='user', uselist=False, cascade='all, delete-orphan')
     issued_loans = db.relationship('Loan', foreign_keys='Loan.librarian_id', backref='librarian', lazy='dynamic')
